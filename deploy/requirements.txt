@@ -1,0 +1,13 @@
+# Libraries for the deployed demo only (Streamlit Community Cloud).
+# Pinned to the versions the demo was tested with. scikit-learn and
+# catboost must match the versions that saved outputs/final_model.joblib,
+# or the saved model may not load.
+# To retrain the models, use the team's requirements.txt at the root instead.
+streamlit==1.66.0
+pandas==3.0.6
+numpy==2.5.3
+scikit-learn==1.9.1
+scipy==1.18.1
+catboost==1.2.10
+matplotlib==3.11.2
+joblib==1.6.0

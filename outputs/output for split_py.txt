@@ -1,0 +1,7 @@
+============================================================
+TEAM J - SPLIT REPORT (ordered by arrival_date)
+============================================================
+train   83,629 bookings  2015-07-01 to 2017-02-10  cancel rate 36.0%  median lead time 60 days
+val     18,048 bookings  2017-02-11 to 2017-05-22  cancel rate 39.3%  median lead time 69 days
+test    17,713 bookings  2017-05-23 to 2017-08-31  cancel rate 39.5%  median lead time 135 days
+total  119,390

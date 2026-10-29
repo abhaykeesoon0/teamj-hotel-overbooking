@@ -1,0 +1,47 @@
+============================================================
+TEAM J - DATA QUALITY REPORT
+============================================================
+Source: Antonio, N., de Almeida, A. and Nunes, L. (2019) 'Hotel booking demand datasets', Data in Brief, 22, pp. 41-49. doi:10.1016/j.dib.2018.11.126. Licence: CC BY 4.0.
+
+Rows: 119,390   Columns: 34
+hotel
+City Hotel      79330
+Resort Hotel    40060 
+
+Arrivals: 2015-07-01 to 2017-08-31
+Bookings made: 2013-06-24 to 2017-08-31
+
+Missing values (column: count, % of rows):
+  company      112,593  (94.3%)
+  agent         16,340  (13.7%)
+  country          488  (0.4%)
+  children           4  (0.0%)
+
+Cancellation rate: 37.0%  (44,224 cancelled)
+hotel
+City Hotel      41.7%
+Resort Hotel    27.8% 
+
+Exact duplicate rows (copies after the first): 31,994 (26.8%)
+Rows left if duplicates were removed: 87,396
+Cancellation rate among the duplicate copies: 63.1%
+
+Odd rows (flagged for review, nothing removed yet):
+  zero guests              180
+  zero nights              715
+  negative adr (price)       1
+  adr above 1000             1
+
+Leakage check: reservation_status vs is_canceled
+is_canceled             0      1
+reservation_status              
+Canceled                0  43017
+Check-Out           75166      0
+No-Show                 0   1207
+-> every row matches, so this column IS the answer and must be dropped.
+
+Distinct values in high-cardinality columns:
+  country   177
+  agent     333
+  company   352
+===========================

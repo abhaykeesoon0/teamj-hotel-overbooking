@@ -1,0 +1,9 @@
+# Team J - Python libraries needed to run the project.
+# Install with:  pip install -r requirements.txt
+# Tested with the versions in brackets (Python 3.13/3.14).
+pandas>=2.2          # (3.0.5) loading and handling the data
+numpy>=1.26          # (2.5.3) numbers and arrays
+scikit-learn>=1.4    # (1.9.1) logistic regression, preprocessing, metrics, calibration
+matplotlib>=3.8      # (3.11.2) figures saved to outputs/
+catboost>=1.2        # (1.2.10) gradient boosting baseline
+torch>=2.2           # (2.14.1) the embedding neural network

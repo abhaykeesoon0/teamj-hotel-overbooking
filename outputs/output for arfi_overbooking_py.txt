@@ -1,0 +1,161 @@
+Probabilities from: STAND-IN gradient boosting (replace with team model)
+
+================================================================
+CALIBRATION (test set)
+================================================================
+Test bookings: 17,713   cancel rate 39.5%
+PR-AUC 0.779   Brier score 0.157   (always predicting the base rate: 0.239)
+Brier before calibration 0.170 -> after 0.157
+               bookings  mean_predicted  actual_rate
+prob                                                
+(-0.001, 0.1]      4532           0.025        0.051
+(0.1, 0.2]         1734           0.160        0.227
+(0.2, 0.3]         2860           0.254        0.299
+(0.3, 0.4]         1339           0.340        0.391
+(0.4, 0.5]         1457           0.442        0.465
+(0.5, 0.6]          521           0.565        0.507
+(0.6, 0.7]         1312           0.654        0.615
+(0.7, 0.8]         2509           0.746        0.726
+(0.8, 0.9]          129           0.817        0.798
+(0.9, 1.0]         1320           1.000        0.999
+Sum of probabilities 6,669 vs actual cancellations 6,996
+
+================================================================
+THRESHOLDS (test set)
+================================================================
+                                  threshold  flagged  precision  recall  walk-risk (false alarms)  missed cancels
+cost-based, walk = 1x empty room      0.500   5791.0      0.745   0.617                    1476.0          2681.0
+cost-based, walk = 2x empty room      0.667   4987.0      0.781   0.556                    1094.0          3103.0
+cost-based, walk = 3x empty room      0.750   2745.0      0.872   0.342                     350.0          4601.0
+cost-based, walk = 5x empty room      0.833   1331.0      0.998   0.190                       2.0          5667.0
+validation, 90% precision             0.723   3068.0      0.855   0.375                     446.0          4374.0
+
+================================================================
+NIGHTLY OVERBOOKING BACKTEST (test period)
+================================================================
+Hotel nights scored: 202  (2017-05-23 to 2017-08-31), 67,611 booked room-nights
+
+Both hotels: 202 nights. Average night: 335 bookings, 138.3 actually cancelled, model expected 123.1; mean error 21.4 rooms
+  independent  simulated spread   6.7 rooms (st. dev.); actual inside the 10-90% band on 30% of nights (target 80%)
+  block-aware  simulated spread   8.1 rooms (st. dev.); actual inside the 10-90% band on 34% of nights (target 80%)
+
+City Hotel: 101 nights. Average night: 373 bookings, 158.4 actually cancelled, model expected 160.4; mean error 10.6 rooms
+  independent  simulated spread   7.4 rooms (st. dev.); actual inside the 10-90% band on 59% of nights (target 80%)
+  block-aware  simulated spread   9.7 rooms (st. dev.); actual inside the 10-90% band on 68% of nights (target 80%)
+
+Resort Hotel: 101 nights. Average night: 296 bookings, 118.1 actually cancelled, model expected 85.8; mean error 32.3 rooms
+  independent  simulated spread   6.1 rooms (st. dev.); actual inside the 10-90% band on 0% of nights (target 80%)
+  block-aware  simulated spread   6.5 rooms (st. dev.); actual inside the 10-90% band on 0% of nights (target 80%)
+
+Walk costs 1x an empty room (cost in empty-room units):
+                      walked/night  empty/night  nights with a walk  cost/night
+model, independent            3.15        18.29                0.31       21.44
+model, block-aware            2.85        18.31                0.31       21.15
+fixed 10% rule                0.00       105.23                0.00      105.23
+average-rate rule             1.41        19.01                0.15       20.42
+oracle (knows truth)          0.00         0.00                0.00        0.00
+
+Walk costs 2x an empty room (cost in empty-room units):
+                      walked/night  empty/night  nights with a walk  cost/night
+model, independent            2.25        20.27                0.25       24.77
+model, block-aware            1.72        20.53                0.23       23.97
+fixed 10% rule                0.00       105.23                0.00      105.23
+average-rate rule             1.41        19.01                0.15       21.83
+oracle (knows truth)          0.00         0.00                0.00        0.00
+
+Walk costs 3x an empty room (cost in empty-room units):
+                      walked/night  empty/night  nights with a walk  cost/night
+model, independent            1.87        21.49                0.23       27.10
+model, block-aware            1.26        22.02                0.19       25.81
+fixed 10% rule                0.00       105.23                0.00      105.23
+average-rate rule             1.41        19.01                0.15       23.23
+oracle (knows truth)          0.00         0.00                0.00        0.00
+
+Walk costs 5x an empty room (cost in empty-room units):
+                      walked/night  empty/night  nights with a walk  cost/night
+model, independent            1.43        23.02                0.16       30.17
+model, block-aware            0.84        23.84                0.14       28.05
+fixed 10% rule                0.00       105.23                0.00      105.23
+average-rate rule             1.41        19.01                0.15       26.04
+oracle (knows truth)          0.00         0.00                0.00        0.00
+
+City Hotel, walk costs 2x an empty room:
+                    walked/night  empty/night  nights with a walk  cost/night
+model, independent          4.50         5.61                0.50       14.60
+model, block-aware          3.44         5.97                0.47       12.84
+fixed 10% rule              0.00       121.51                0.00      121.51
+average-rate rule           1.81        25.70                0.19       29.33
+
+Resort Hotel, walk costs 2x an empty room:
+                    walked/night  empty/night  nights with a walk  cost/night
+model, independent           0.0        34.93                0.00       34.93
+model, block-aware           0.0        35.10                0.00       35.10
+fixed 10% rule               0.0        88.95                0.00       88.95
+average-rate rule            1.0        12.33                0.12       14.33
+
+================================================================
+ERROR ANALYSIS at threshold 0.67 (test set, 17,713 bookings)
+================================================================
+Caught cancellations (TP) 3,893 | false alarms (FP) 1,094 | missed cancellations (FN) 3,103 | correct stays (TN) 9,623
+Precision 78.1%   recall 55.6%
+
+By hotel:
+              bookings  cancel rate  flagged  false alarms  missed  precision  recall
+hotel                                                                                
+City Hotel       11891        0.405     3919           866    1762      0.779   0.634
+Resort Hotel      5822        0.375     1068           228    1341      0.787   0.385
+
+By market_segment:
+                bookings  cancel rate  flagged  false alarms  missed  precision  recall
+market_segment                                                                         
+Aviation              57        0.281        6             3      13      0.500   0.188
+Complementary         86        0.116        0             0      10        NaN   0.000
+Corporate            468        0.282       83             3      52      0.964   0.606
+Direct              2099        0.188       68            22     349      0.676   0.116
+Groups              1474        0.627      898            13      39      0.986   0.958
+Offline TA/TO       2797        0.336      832            65     172      0.922   0.817
+Online TA          10732        0.427     3100           988    2468      0.681   0.461
+
+By deposit_type:
+              bookings  cancel rate  flagged  false alarms  missed  precision  recall
+deposit_type                                                                         
+No Deposit       16378        0.346     3666          1094    3090      0.702   0.454
+Non Refund        1316        0.999     1314             0       1      1.000   0.999
+Refundable          19        1.000        7             0      12      1.000   0.368
+
+By lead band:
+           bookings  cancel rate  flagged  false alarms  missed  precision  recall
+lead band                                                                         
+0-7d           1719        0.105       22             6     164      0.727   0.089
+8-30d          2102        0.293      273           123     466      0.549   0.244
+31-90d         2795        0.394      588           149     662      0.747   0.399
+91-180d        5330        0.441     2123           536     761      0.748   0.676
+181d+          5767        0.477     1981           280    1050      0.859   0.618
+
+By is_copy:
+         bookings  cancel rate  flagged  false alarms  missed  precision  recall
+is_copy                                                                         
+False       13394        0.340     3036           988    2509      0.675   0.449
+True         4319        0.565     1951           106     594      0.946   0.756
+
+Most confident FALSE ALARMS (flagged to cancel, guest stayed):
+               hotel market_segment deposit_type  agent country  lead_time     adr  total_of_special_requests  previous_cancellations     p  is_canceled
+115485    City Hotel      Online TA   No Deposit    9.0     COL         65  170.00                          0                       0  1.00            0
+14182   Resort Hotel         Direct   No Deposit  250.0     PRT         80  195.00                          0                       1  0.86            0
+115425    City Hotel      Online TA   No Deposit    9.0     BRA        224  160.95                          0                       0  0.81            0
+117300    City Hotel      Online TA   No Deposit    9.0     CHN         20  234.00                          0                       0  0.81            0
+118504    City Hotel      Online TA   No Deposit    9.0     ESP        268  125.10                          0                       0  0.81            0
+115565    City Hotel      Online TA   No Deposit    9.0     BRA        276  107.10                          0                       0  0.81            0
+115649    City Hotel      Online TA   No Deposit    9.0     BRA        123  108.00                          0                       0  0.81            0
+113260    City Hotel      Online TA   No Deposit    9.0     USA        125  216.00                          0                       0  0.81            0
+
+Most confident MISSES (predicted to stay, guest cancelled):
+               hotel market_segment deposit_type  agent country  lead_time     adr  total_of_special_requests  previous_cancellations     p  is_canceled
+13320   Resort Hotel  Offline TA/TO   No Deposit   40.0     GBR        184  134.85                          0                       0  0.00            1
+108459    City Hotel         Direct   No Deposit    NaN     USA         31  135.00                          2                       0  0.01            1
+70258     City Hotel  Offline TA/TO   No Deposit   28.0     LUX         22   99.00                          0                       0  0.01            1
+11694   Resort Hotel      Online TA   No Deposit  240.0     GBR        305  168.00                          1                       0  0.01            1
+91529     City Hotel       Aviation   No Deposit    NaN     GBR          0   95.00                          0                       0  0.01            1
+34707   Resort Hotel         Direct   No Deposit    NaN     AGO          0  190.00                          0                       0  0.01            1
+11693   Resort Hotel      Online TA   No Deposit  240.0     GBR        352   60.00                          2                       0  0.01            1
+12507   Resort Hotel      Online TA   No Deposit  242.0     GBR        219  126.00                          1                       0  0.01            1

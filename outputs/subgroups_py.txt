@@ -1,0 +1,39 @@
+==============================================================================
+SUBGROUPS ON THE TEST SET - model with country (false alarm = flagged at p >= 0.667 but guest arrived)
+==============================================================================
+       hotel  bookings  actual_cancel_rate  mean_predicted  pr_auc  false_alarm_rate
+  City Hotel     11891               0.405           0.360   0.824             0.091
+Resort Hotel      5822               0.375           0.219   0.760             0.015 
+
+country_group  bookings  actual_cancel_rate  mean_predicted  pr_auc  false_alarm_rate
+          PRT      5109               0.592           0.503   0.922             0.032
+        Other      3797               0.336           0.268   0.640             0.096
+          GBR      2483               0.283           0.197   0.648             0.048
+          DEU      1463               0.194           0.180   0.528             0.065
+          FRA      1440               0.306           0.243   0.582             0.086
+          ESP      1209               0.400           0.237   0.654             0.054
+          IRL       654               0.367           0.223   0.649             0.053
+          USA       538               0.310           0.231   0.666             0.067
+          BEL       517               0.263           0.213   0.536             0.071
+          ITA       503               0.477           0.401   0.768             0.106 
+
+==============================================================================
+SUBGROUPS ON THE TEST SET - model without country (false alarm = flagged at p >= 0.667 but guest arrived)
+==============================================================================
+       hotel  bookings  actual_cancel_rate  mean_predicted  pr_auc  false_alarm_rate
+  City Hotel     11891               0.405           0.373   0.782             0.098
+Resort Hotel      5822               0.375           0.257   0.740             0.011 
+
+country_group  bookings  actual_cancel_rate  mean_predicted  pr_auc  false_alarm_rate
+          PRT      5109               0.592           0.399   0.900             0.013
+        Other      3797               0.336           0.325   0.623             0.106
+          GBR      2483               0.283           0.265   0.697             0.051
+          DEU      1463               0.194           0.278   0.561             0.085
+          FRA      1440               0.306           0.331   0.620             0.092
+          ESP      1209               0.400           0.309   0.706             0.055
+          IRL       654               0.367           0.353   0.716             0.058
+          USA       538               0.310           0.279   0.631             0.070
+          BEL       517               0.263           0.316   0.598             0.105
+          ITA       503               0.477           0.383   0.759             0.099 
+
+Saved to C:\VS Code\TeamJ-Hotel-Overbooking\outputs\subgroups.csv

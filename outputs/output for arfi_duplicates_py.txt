@@ -1,0 +1,91 @@
+================================================================
+CONDITION 3 - DUPLICATE ROWS
+================================================================
+Copies after the first: 31,994 (26.8% of rows)
+Rows involved in a repeated group: 40,165
+Distinct repeated groups: 8,171   largest group: 180 identical rows
+Groups of exactly 2 rows: 5,034 -> only 15.7% of all copies
+Groups of 5 or more rows: 1,671 -> 73.5% of all copies
+
+Five largest repeated groups (one example row each):
+     hotel  agent market_segment deposit_type arrival_date  lead_time   adr  is_canceled  rows_in_group
+City Hotel    NaN         Groups   Non Refund   2016-11-07        277 100.0            1            180
+City Hotel   37.0         Groups   Non Refund   2016-02-17         68  75.0            1            150
+City Hotel  119.0  Offline TA/TO   Non Refund   2016-06-15        188 130.0            1            109
+City Hotel   37.0         Groups   Non Refund   2016-05-24        158 130.0            1            101
+City Hotel   19.0  Offline TA/TO   Non Refund   2015-12-08         34  90.0            1            100
+
+Share of rows that are copies, by group (compare with the overall 26.8%):
+
+  by hotel:
+               rows copy_share
+hotel                         
+City Hotel    79330      32.7%
+Resort Hotel  40060      15.2%
+
+  by market_segment:
+                 rows copy_share
+market_segment                  
+Online TA       56477       8.6%
+Offline TA/TO   24219      42.7%
+Groups          19811      75.1%
+Direct          12606       6.4%
+Corporate        5295      20.5%
+Complementary     743       5.5%
+Aviation          237       4.2%
+Undefined           2       0.0%
+
+  by deposit_type:
+                rows copy_share
+deposit_type                   
+No Deposit    104641      17.6%
+Non Refund     14587      92.9%
+Refundable       162      34.0%
+
+  by customer_type:
+                  rows copy_share
+customer_type                    
+Transient        89613      19.7%
+Transient-Party  25124      53.3%
+Contract          4076      23.0%
+Group              577       5.7%
+
+  top 5 agents by number of copies (agent -1 = no agent):
+       copies   rows copy_share
+agent                          
+ 1.0     5959   7191      82.9%
+-1.0     4147  16340      25.4%
+ 9.0     3202  31961      10.0%
+ 6.0     2173   3290      66.0%
+ 37.0    1005   1230      81.7%
+  these 5 agents hold 51.5% of all copies
+
+Copies against non-copies:
+  cancellation rate   copies 63.1%   non-copies 27.5%   all rows 37.0%
+  median lead time    copies 144 days   non-copies 49 days
+  no special requests copies 82.6%   non-copies 50.2%
+  cancellation rate by hotel, before and after removing copies:
+             all rows duplicates removed
+hotel                                   
+City Hotel      41.7%              30.0%
+Resort Hotel    27.8%              23.5%
+
+Groups identical on every booking-time feature: 8,237 (40,754 rows)
+  groups with mixed outcomes (some cancelled, some stayed): 265
+  rows sharing their group's majority outcome: 98.8%
+
+Figure saved to C:\VS Code\TeamJ-Hotel-Overbooking\outputs\duplicates_by_segment.png
+
+================================================================
+BASELINE (logistic regression), threshold set on validation for 90% precision
+================================================================
+
+Scored on the full validation set: 18,048 bookings, cancel rate 39.3%
+                                          PR-AUC  ROC-AUC  Brier  precision  recall
+trained: keep duplicates (83,629 rows)     0.850    0.882  0.141      0.900   0.483
+trained: remove duplicates (59,554 rows)   0.851    0.884  0.142      0.986   0.341
+
+Scored on the de-duplicated validation set: 13,355 bookings, cancel rate 30.3%
+                                          PR-AUC  ROC-AUC  Brier  precision  recall
+trained: keep duplicates (83,629 rows)     0.657    0.824  0.159      0.747   0.257
+trained: remove duplicates (59,554 rows)   0.664    0.826  0.159      0.902   0.075

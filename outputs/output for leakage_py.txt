@@ -1,0 +1,19 @@
+========================================================================
+TEAM J - LEAKAGE CHECK (logistic regression, scored on VALIDATION)
+========================================================================
+Columns used                                           PR-AUC   ROC-AUC
+All leaks in (status + status date + suspects + parking)    1.000     1.000
+Definite leaks out, suspects still in                   0.826     0.849
+Clean: honest columns only                              0.811     0.828
+Clean + assigned_room_type only                         0.814     0.834
+Clean + room_changed (reserved != assigned)             0.817     0.837
+Clean + booking_changes only                            0.815     0.833
+Clean + required_car_parking_spaces only                0.820     0.840
+Clean without days_in_waiting_list (kept: no effect)    0.811     0.828
+========================================================================
+Cancellation rate when the room was changed:  5.4%  (14,917 bookings)
+Cancellation rate when it was not:            41.6%
+Cancellation rate when parking was requested: 0.0%  (7,416 bookings)
+Cancellation rate with 0 booking changes:     40.9%
+Cancellation rate with 1+ booking changes:    15.7%
+========================================================================

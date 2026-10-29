@@ -1,0 +1,83 @@
+Imported data.py: C:\VS Code\TeamJ-Hotel-Overbooking\data.py
+Imported split.py: C:\VS Code\TeamJ-Hotel-Overbooking\split.py
+Seed: 42
+Target: is_canceled
+Ordering: arrival_date
+Raw SHA-256: 7c2ae42a7353905ea136e5c2287f17c92c5435826598bfbb8491c6f0c7b1fc06
+Split SHA-256: 0427dd88dd00aa5568a090b210c1c94a65b33d85fef98cb78a296ff21be2b92f
+Rows: 119390
+set
+train    83629
+val      18048
+test     17713
+Proposed numeric inputs: ['lead_time', 'arrival_date_week_number', 'stays_in_weekend_nights', 'stays_in_week_nights', 'adults', 'children', 'babies', 'is_repeated_guest', 'previous_cancellations', 'previous_bookings_not_canceled', 'adr', 'total_of_special_requests', 'days_in_waiting_list']
+Proposed categorical inputs: ['hotel', 'meal', 'market_segment', 'distribution_channel', 'reserved_room_type', 'deposit_type', 'customer_type', 'country', 'agent', 'company']
+VALIDATION-ONLY DIAGNOSTICS
+Training rows: 83629
+Validation rows: 18048
+Validation cancellation prevalence: 0.3929
+     all_flagged: average precision=1.0000; Brier=0.0000
+  direct_outcome: average precision=1.0000; Brier=0.0000
+           clean: average precision=0.8504; Brier=0.1411
+Duplicate copies removed FROM TRAIN ONLY: 24075
+clean_train_deduplicated: average precision=0.8514; Brier=0.1422
+Held-out test was not evaluated.
+Approved duplicate policy: keep
+Dataset SHA-256: 7c2ae42a7353905ea136e5c2287f17c92c5435826598bfbb8491c6f0c7b1fc06
+Split SHA-256: 0427dd88dd00aa5568a090b210c1c94a65b33d85fef98cb78a296ff21be2b92f
+This run will evaluate the held-out test set.
+
+===== FEATURE SET: with country =====
+VALIDATION logistic: average precision=0.8504; Brier=0.1411
+VALIDATION catboost: average precision=0.8696; Brier=0.1297
+MLP epoch 01: validation average precision=0.8578
+MLP epoch 02: validation average precision=0.8620
+MLP epoch 03: validation average precision=0.8660
+MLP epoch 04: validation average precision=0.8634
+MLP epoch 05: validation average precision=0.8648
+MLP epoch 06: validation average precision=0.8625
+MLP epoch 07: validation average precision=0.8637
+VALIDATION mlp: average precision=0.8660; Brier=0.1329
+Selected using validation: catboost
+HELD-OUT TEST logistic: average precision=0.7812; Brier=0.1637   |   de-duplicated test: average precision=0.6544
+HELD-OUT TEST catboost: average precision=0.7960; Brier=0.1653   |   de-duplicated test: average precision=0.6710
+HELD-OUT TEST mlp: average precision=0.7978; Brier=0.1596   |   de-duplicated test: average precision=0.6731
+Final model saved to: C:\VS Code\TeamJ-Hotel-Overbooking\outputs\final_model.joblib
+Results written to: C:\VS Code\TeamJ-Hotel-Overbooking\outputs
+
+===== FEATURE SET: WITHOUT country =====
+VALIDATION logistic: average precision=0.8299; Brier=0.1479
+VALIDATION catboost: average precision=0.8343; Brier=0.1451
+MLP epoch 01: validation average precision=0.8197
+MLP epoch 02: validation average precision=0.8209
+MLP epoch 03: validation average precision=0.8215
+MLP epoch 04: validation average precision=0.8232
+MLP epoch 05: validation average precision=0.8227
+MLP epoch 06: validation average precision=0.8212
+MLP epoch 07: validation average precision=0.8197
+MLP epoch 08: validation average precision=0.8235
+MLP epoch 09: validation average precision=0.8237
+MLP epoch 10: validation average precision=0.8224
+MLP epoch 11: validation average precision=0.8223
+MLP epoch 12: validation average precision=0.8198
+MLP epoch 13: validation average precision=0.8254
+MLP epoch 14: validation average precision=0.8234
+MLP epoch 15: validation average precision=0.8223
+MLP epoch 16: validation average precision=0.8234
+MLP epoch 17: validation average precision=0.8224
+VALIDATION mlp: average precision=0.8254; Brier=0.1499
+Selected using validation: catboost
+HELD-OUT TEST logistic: average precision=0.7556; Brier=0.1757   |   de-duplicated test: average precision=0.6353
+HELD-OUT TEST catboost: average precision=0.7625; Brier=0.1772   |   de-duplicated test: average precision=0.6323
+HELD-OUT TEST mlp: average precision=0.7572; Brier=0.1812   |   de-duplicated test: average precision=0.6212
+Results written to: C:\VS Code\TeamJ-Hotel-Overbooking\outputs
+
+WITH country: selected on validation = catboost
+  Validation: {'logistic': {'average_precision': 0.8504185655715112, 'brier': 0.1411422049175714}, 'catboost': {'average_precision': 0.8696190890753391, 'brier': 0.12968309981755125}, 'mlp': {'average_precision': 0.8659846436279699, 'brier': 0.1328946352005005}}
+  Test (all): {'logistic': {'average_precision': 0.7811628082929855, 'brier': 0.16373192481888243}, 'catboost': {'average_precision': 0.7960228758464576, 'brier': 0.16528922249208325}, 'mlp': {'average_precision': 0.7978131336392605, 'brier': 0.15960592031478882}}
+  Test (de-duplicated): {'logistic': {'average_precision': 0.6543576838890487, 'brier': 0.17777562062766836}, 'catboost': {'average_precision': 0.6709731553930247, 'brier': 0.17934955153224763}, 'mlp': {'average_precision': 0.6731297673979328, 'brier': 0.17492426931858063}}
+
+WITHOUT country: selected on validation = catboost
+  Validation: {'logistic': {'average_precision': 0.8298818928822479, 'brier': 0.14787935464857518}, 'catboost': {'average_precision': 0.8343017501820276, 'brier': 0.14507935092597393}, 'mlp': {'average_precision': 0.8254185549365042, 'brier': 0.1498635858297348}}
+  Test (all): {'logistic': {'average_precision': 0.7556045251203691, 'brier': 0.1756929325938219}, 'catboost': {'average_precision': 0.7624773527749638, 'brier': 0.1771694810951467}, 'mlp': {'average_precision': 0.7571510763253622, 'brier': 0.18117974698543549}}
+  Test (de-duplicated): {'logistic': {'average_precision': 0.6353346982879404, 'brier': 0.18714921160264017}, 'catboost': {'average_precision': 0.6323319553547219, 'brier': 0.19047309691850076}, 'mlp': {'average_precision': 0.6212452879255346, 'brier': 0.1951659917831421}}

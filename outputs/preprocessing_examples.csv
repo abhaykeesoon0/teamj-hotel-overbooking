@@ -1,0 +1,7 @@
+booking,row_id,stage,hotel,lead_time,adults,children,adr,deposit_type,agent,company,country,reservation_status,assigned_room_type,booking_changes,required_car_parking_spaces,is_canceled,arrival_date_week_number,stays_in_weekend_nights,stays_in_week_nights,babies,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,total_of_special_requests,days_in_waiting_list,meal,market_segment,distribution_channel,reserved_room_type,customer_type
+"A: no agent, no company",0,before,Resort Hotel,342,2,0.0,0.0,No Deposit,,,PRT,Check-Out,C,3,0,0,,,,,,,,,,,,,,
+"A: no agent, no company",0,after,Resort Hotel,2.3,0.26,-0.24,-1.97,No Deposit,__MISSING__,__MISSING__,PRT,,,,,,-0.2,-0.9,-1.28,-0.08,-0.18,-0.12,-0.09,-0.69,-0.15,BB,Direct,Direct,C,Transient
+B: non-refundable,2133,before,Resort Hotel,87,2,0.0,36.05,Non Refund,96.0,,PRT,Canceled,A,0,0,1,,,,,,,,,,,,,,
+B: non-refundable,2133,after,Resort Hotel,-0.11,0.26,-0.24,-1.21,Non Refund,96.0,__MISSING__,PRT,,,,,,0.69,-0.9,-0.76,-0.08,-0.18,-0.12,-0.09,-0.69,-0.15,BB,Groups,TA/TO,A,Transient
+C: children missing,40600,before,City Hotel,2,2,,12.0,No Deposit,,,PRT,Canceled,B,0,0,1,,,,,,,,,,,,,,
+C: children missing,40600,after,City Hotel,-0.91,0.26,-0.24,-1.72,No Deposit,__MISSING__,__MISSING__,PRT,,,,,,0.14,0.1,-1.28,-0.08,-0.18,-0.12,-0.09,0.63,-0.15,BB,Undefined,Undefined,B,Transient-Party

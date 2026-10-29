@@ -1,0 +1,5 @@
+Model: catboost
+              hotel  lead_time deposit_type market_segment  predicted  is_canceled
+11635  Resort Hotel         13   No Deposit      Online TA      0.418            1
+11636  Resort Hotel         53   No Deposit      Online TA      0.606            1
+11637  Resort Hotel          8   No Deposit  Complementary      0.260            1

@@ -1,0 +1,101 @@
+{
+  "seed": 42,
+  "split_ordered_by": "arrival_date",
+  "raw_data_sha256": "7c2ae42a7353905ea136e5c2287f17c92c5435826598bfbb8491c6f0c7b1fc06",
+  "split_sha256": "991e4e3d19f7b60d0c16e763bc1f23baef7e60480584b636f9d32b4eed1262b6",
+  "numeric_features": [
+    "lead_time",
+    "arrival_date_week_number",
+    "stays_in_weekend_nights",
+    "stays_in_week_nights",
+    "adults",
+    "children",
+    "babies",
+    "is_repeated_guest",
+    "previous_cancellations",
+    "previous_bookings_not_canceled",
+    "adr",
+    "total_of_special_requests",
+    "days_in_waiting_list"
+  ],
+  "categorical_features": [
+    "hotel",
+    "meal",
+    "market_segment",
+    "distribution_channel",
+    "reserved_room_type",
+    "deposit_type",
+    "customer_type",
+    "country",
+    "agent",
+    "company"
+  ],
+  "duplicate_policy": "keep",
+  "training_rows": 83629,
+  "validation_rows": 18048,
+  "test_rows": 17713,
+  "selected_model": "catboost",
+  "diagnostics": {
+    "all_flagged": {
+      "average_precision": 1.0,
+      "brier": 4.045752211825113e-06
+    },
+    "direct_outcome": {
+      "average_precision": 0.9999999999999999,
+      "brier": 3.8268959855461295e-06
+    },
+    "clean": {
+      "average_precision": 0.8503525185146679,
+      "brier": 0.14111894630560068
+    },
+    "clean_train_deduplicated": {
+      "average_precision": 0.8515072734506545,
+      "brier": 0.1421611072299766
+    },
+    "training_duplicate_copies_removed": 24075
+  },
+  "validation_scores": {
+    "logistic": {
+      "average_precision": 0.8503525185146679,
+      "brier": 0.14111894630560068
+    },
+    "catboost": {
+      "average_precision": 0.8696190890753391,
+      "brier": 0.12968309981755125
+    },
+    "mlp": {
+      "average_precision": 0.8659846436279699,
+      "brier": 0.1328946352005005
+    }
+  },
+  "include_country": true,
+  "test_scores": {
+    "logistic": {
+      "average_precision": 0.7809571574891092,
+      "brier": 0.1637900164197251
+    },
+    "catboost": {
+      "average_precision": 0.7960228758464576,
+      "brier": 0.16528922249208325
+    },
+    "mlp": {
+      "average_precision": 0.7978131277972199,
+      "brier": 0.15960590541362762
+    }
+  },
+  "test_scores_deduplicated": {
+    "logistic": {
+      "average_precision": 0.6540916695486473,
+      "brier": 0.1778212534397581
+    },
+    "catboost": {
+      "average_precision": 0.6709731553930247,
+      "brier": 0.17934955153224763
+    },
+    "mlp": {
+      "average_precision": 0.673129729355519,
+      "brier": 0.17492426931858063
+    }
+  },
+  "test_rows_deduplicated": 14487
+}

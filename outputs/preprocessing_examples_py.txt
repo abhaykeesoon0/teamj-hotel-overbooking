@@ -1,0 +1,16 @@
+======================================================================
+PREPROCESSING ON REAL BOOKINGS (before and after)
+======================================================================
+Columns removed before modelling: reservation_status, reservation_status_date, assigned_room_type, booking_changes, required_car_parking_spaces
+
+--- Booking A: no agent, no company (row 0, train set) ---
+BEFORE: {'hotel': 'Resort Hotel', 'lead_time': 342, 'adults': 2, 'children': 0.0, 'adr': 0.0, 'deposit_type': 'No Deposit', 'agent': nan, 'company': nan, 'country': 'PRT', 'reservation_status': 'Check-Out', 'assigned_room_type': 'C', 'booking_changes': 3, 'required_car_parking_spaces': 0, 'is_canceled': 0}
+AFTER (selected inputs): {'lead_time': 2.3, 'adults': 0.26, 'children': -0.24, 'adr': -1.97, 'deposit_type': 'No Deposit', 'agent': '__MISSING__', 'company': '__MISSING__', 'country': 'PRT'} 
+
+--- Booking B: non-refundable (row 2133, train set) ---
+BEFORE: {'hotel': 'Resort Hotel', 'lead_time': 87, 'adults': 2, 'children': 0.0, 'adr': 36.05, 'deposit_type': 'Non Refund', 'agent': 96.0, 'company': nan, 'country': 'PRT', 'reservation_status': 'Canceled', 'assigned_room_type': 'A', 'booking_changes': 0, 'required_car_parking_spaces': 0, 'is_canceled': 1}
+AFTER (selected inputs): {'lead_time': -0.11, 'adults': 0.26, 'children': -0.24, 'adr': -1.21, 'deposit_type': 'Non Refund', 'agent': '96.0', 'company': '__MISSING__', 'country': 'PRT'} 
+
+--- Booking C: children missing (row 40600, train set) ---
+BEFORE: {'hotel': 'City Hotel', 'lead_time': 2, 'adults': 2, 'children': nan, 'adr': 12.0, 'deposit_type': 'No Deposit', 'agent': nan, 'company': nan, 'country': 'PRT', 'reservation_status': 'Canceled', 'assigned_room_type': 'B', 'booking_changes': 0, 'required_car_parking_spaces': 0, 'is_canceled': 1}
+AFTER (selected inputs): {'lead_time': -0.91, 'adults': 0.26, 'children': -0.24, 'adr': -1.72, 'deposit_type': 'No Deposit', 'agent': '__MISSING__', 'company':'__MISSING__', 'country': 'PRT'} 
