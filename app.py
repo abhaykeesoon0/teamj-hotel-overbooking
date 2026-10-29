@@ -239,7 +239,7 @@ def page_night():
     st.bar_chart(pd.Series(sims).value_counts().sort_index())
     st.caption(f"Walk = {walk}x an empty room: overbook by the number of cancellations "
                f"we are about {ob.CE / (ob.CE + walk * ob.CE):.0%} sure to reach. "
-               f"Backtest figure: {OUT / 'overbooking_cost.png'}")
+               "The backtest over every test-period night is on the Model results page.")
 
 
 # ---------------------------------------------------------------------------
@@ -301,6 +301,8 @@ def page_data():
     split = df.groupby(labels).agg(bookings=(TARGET, "size"), first_arrival=("arrival_date", "min"),
                                    last_arrival=("arrival_date", "max"),
                                    cancel_rate=(TARGET, "mean"))
+    for col in ["first_arrival", "last_arrival"]:          # dates only, no 00:00:00
+        split[col] = split[col].dt.strftime("%Y-%m-%d")
     st.dataframe(split.reindex(["train", "val", "test"]).round({"cancel_rate": 3}), width="stretch")
 
     st.subheader("Cancellation rate by arrival month")
